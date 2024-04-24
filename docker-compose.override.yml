@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  tradeservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6161:80"
+
+  tradedatabase:
+    ports:
+      - "5432:5432"
+
+  rabbitmq:
+    ports:
+      # AMQP protocol port
+      - "5672:5672"
+      # HTTP management UI
+      - "15672:15672"

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Commands\OrderCommands\CreateOrder\" />
+    <Folder Include="Application\Commands\OrderCommands\CancelOrder\" />
+    <Folder Include="Application\Commands\OrderCommands\PushNotification\" />
+    <Folder Include="Application\Commands\OrderCommands\SendSms\" />
+    <Folder Include="Application\Commands\OrderCommands\SendEmail\" />
+    <Folder Include="Application\Events\DomainEvents\OrderDomainEvents\OrderCreated\" />
+    <Folder Include="Application\Queries\OrderQueries\GetOrderChannels\" />
+    <Folder Include="Application\Queries\UserQueries\GetUser\" />
+    <Folder Include="Domain\Channel\" />
+    <Folder Include="Domain\User\" />
+    <Folder Include="Infrastructure\Data\CommandRepos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuildingBlocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\BuildingBlocks\BuildingBlocks.Data\BuildingBlocks.Data.csproj" />
+    <ProjectReference Include="..\BuildingBlocks\BuildingBlocks.Event\BuildingBlocks.Event.csproj" />
+  </ItemGroup>
+
+</Project>

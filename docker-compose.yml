@@ -1,0 +1,35 @@
+version: '3.4'
+
+volumes:
+  tradedatabase-data:
+  rabbitmq-data:
+  rabbitmq-log:
+
+services:
+  tradeservice:
+    container_name: trader-tradeservice
+    image: ${DOCKER_REGISTRY-}tradertradeservice
+    build:
+      context: .
+      dockerfile: src/Trader.TradeService/Dockerfile
+    depends_on:
+      - tradedatabase
+
+  tradedatabase:
+    image: postgres:latest
+    container_name: trader-tradedatabase
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes: 
+      - tradedatabase-data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: trader-rabbitmq
+    hostname: rabbitmq
+    restart: always
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq/
+      - rabbitmq-log:/var/log/rabbitmq
